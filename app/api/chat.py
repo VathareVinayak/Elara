@@ -1,3 +1,5 @@
+# Non-RAG chat API
+
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from app.services.chat_service import get_openrouter_response

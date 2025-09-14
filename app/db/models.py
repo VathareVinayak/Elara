@@ -18,3 +18,6 @@ class Document(BaseModel):
     file_name: str
     session_id: str
     upload_time: Optional[datetime]
+
+
+    
