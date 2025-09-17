@@ -1,21 +1,25 @@
-# Document upload API
 from fastapi import APIRouter, UploadFile, File, HTTPException, Form
 from fastapi.responses import JSONResponse
 from typing import List, Optional
 from PyPDF2 import PdfReader
+
+from app.db.faiss_instance import faiss_client
+from app.db.crud import create_document
+from app.db.supabase_client import supabase
 from app.db.chunked_docs import chunk_text
+
 from app.core.embeddings import embed_text
-from app.db.faiss_client import FaissClient
+
 import uuid
 import shutil
 import os
 
-from app.db.faiss_instance import faiss_client
 
 
 router = APIRouter()
 
-
+UPLOAD_DIR = "uploaded_files"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 @router.post("/upload")
 async def upload_documents(
@@ -26,49 +30,45 @@ async def upload_documents(
     if not files:
         raise HTTPException(status_code=400, detail="No files uploaded")
 
-    # Example save directory, adjust as needed
-    UPLOAD_DIR = "uploaded_files"
-    os.makedirs(UPLOAD_DIR, exist_ok=True)
+    if session_id == "":
+        session_id = None  # Convert empty string to None to avoid UUID errors
+
+    all_chunks = []
 
     try:
-        all_chunks = []
         for file in files:
             file_ext = os.path.splitext(file.filename)[1].lower()
             if file_ext != ".pdf":
                 raise HTTPException(status_code=400, detail="Only PDF files supported")
 
-            # Save locally (optional, for PyPDF2 read)
             saved_path = os.path.join(UPLOAD_DIR, f"{uuid.uuid4()}{file_ext}")
             with open(saved_path, "wb") as buffer:
                 shutil.copyfileobj(file.file, buffer)
 
-            # Extract raw text
+            file_url = await upload_to_supabase_storage(saved_path, file.filename)
+
             raw_text = extract_text_from_pdf(saved_path)
 
-            # Chunk text
-            chunks = chunk_text(raw_text)
+            chunks = chunk_text(raw_text, chunk_size=2000, chunk_overlap=200)  # Increased chunk size
+
+            await create_document(
+                session_id=session_id,
+                file_name=file.filename,
+                file_url=file_url,
+                do_not_store=do_not_store
+            )
 
             if not do_not_store:
-                # Persist document metadata here: session_id, filename, etc.
-                # store_document_metadata(session_id, file.filename, saved_path)
-
-                # Generate embeddings
                 embeddings = embed_text(chunks)
-
-                # Add embeddings to FAISS index
                 faiss_client.add_embeddings(embeddings, chunks)
 
-
-                # Persist chunk metadata as needed
-                # store_chunk_metadata(session_id, chunks)
-
-            # Keep all chunks for response or logging
+            os.remove(saved_path)
             all_chunks.extend(chunks)
 
         return JSONResponse(
             content={
                 "message": f"{len(files)} files uploaded, {len(all_chunks)} chunks processed",
-                "chunks_sample": all_chunks[:3],  # sample to show
+                "chunks_sample": all_chunks[:3],
             }
         )
     except Exception as e:
@@ -83,3 +83,21 @@ def extract_text_from_pdf(path: str) -> str:
         if page_text:
             text += page_text + "\n"
     return text
+
+
+async def upload_to_supabase_storage(file_path: str, original_filename: str) -> str:
+    bucket_name = "documents"
+    file_id = str(uuid.uuid4())
+    file_storage_path = f"{file_id}_{original_filename}"
+
+    with open(file_path, "rb") as file_data:
+        response = supabase.storage.from_(bucket_name).upload(file_storage_path, file_data)
+
+    if hasattr(response, "error") and response.error:
+        raise Exception(f"Supabase storage upload error: {response.error.message}")
+
+    public_url = supabase.storage.from_(bucket_name).get_public_url(file_storage_path)
+    if not public_url:
+        raise Exception("Failed to get public URL from Supabase storage")
+
+    return public_url
