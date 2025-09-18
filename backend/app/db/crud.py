@@ -1,7 +1,7 @@
 from typing import Optional, List
 from datetime import datetime
 
-from app.db.supabase_client import supabase
+from backend.app.db.supabase_client import supabase
 
 # Sessions
 async def create_session(user_id: Optional[str] = None) -> str:

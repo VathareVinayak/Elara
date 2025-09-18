@@ -3,12 +3,12 @@ from fastapi.responses import JSONResponse
 from typing import List, Optional
 from PyPDF2 import PdfReader
 
-from app.db.faiss_instance import faiss_client
-from app.db.crud import create_document
-from app.db.supabase_client import supabase
-from app.db.chunked_docs import chunk_text
+from backend.app.db.faiss_instance import faiss_client
+from backend.app.db.crud import create_document
+from backend.app.db.supabase_client import supabase
+from backend.app.db.chunked_docs import chunk_text
 
-from app.core.embeddings import embed_text
+from backend.app.core.embeddings import embed_text
 
 import uuid
 import shutil

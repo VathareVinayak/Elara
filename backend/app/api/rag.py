@@ -1,7 +1,7 @@
 # RAG chat API
 from fastapi import APIRouter
 from pydantic import BaseModel
-from app.core.rag_pipeline import rag_answer
+from backend.app.core.rag_pipeline import rag_answer
 
 router = APIRouter()
 

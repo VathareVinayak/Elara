@@ -1,6 +1,6 @@
 from typing import List, Optional
-from app.core.embeddings import embed_text
-from app.db.faiss_instance import faiss_client
+from backend.app.core.embeddings import embed_text
+from backend.app.db.faiss_instance import faiss_client
 from ..services.rag_service import call_llm
 
 # Format retrieved chunks with citations
