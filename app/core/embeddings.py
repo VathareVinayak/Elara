@@ -1,8 +1,7 @@
 from sentence_transformers import SentenceTransformer
+
 import os
 from dotenv import load_dotenv
-
-
 load_dotenv()
 token = os.getenv("HUGGINGFACE_HUB_TOKEN")
 
