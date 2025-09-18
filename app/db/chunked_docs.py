@@ -1,12 +1,6 @@
-# Chunking utilities
-
 from langchain.text_splitter import CharacterTextSplitter
 
-def chunk_text(text: str, chunk_size: int = 1000, chunk_overlap: int = 200):
-    """
-    Splits text into chunks of size chunk_size with chunk_overlap.
-    Returns a list of text chunks.
-    """
+def chunk_text(text: str, chunk_size: int = 2000, chunk_overlap: int = 200):
     text_splitter = CharacterTextSplitter(
         separator="\n",
         chunk_size=chunk_size,
