@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elara AI - Universe of Intelligent system</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#7e3af2',
+            primaryDark: '#4c1d95',
+            secondary: '#8b5cf6',
+            accent: '#a78bfa',
+            textLight: '#f0f9ff',
+            textMid: '#d1d5db',
+            textDark: '#bcccdc',
+          },
+          backgroundImage: {
+            'cosmic-gradient': 'radial-gradient(circle at center, #00051a 0%, #001f4d 100%)',
+            'primary-gradient': 'linear-gradient(45deg, #7e3af2, #4c1d95)',
+            'text-gradient': 'linear-gradient(45deg, #7e3af2, #a78bfa, #3b82f6)',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle linear infinite;
+    }
+    
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+    
+    .process-connector {
+      position: absolute;
+      top: 50%;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(126, 58, 242, 0.5), rgba(126, 58, 242, 0.2));
+      z-index: 0;
+    }
+  </style>
+
+</head>
+
+<body class="bg-cosmic-gradient text-textMid min-h-screen overflow-x-hidden">
+  <!-- Stars background -->
+  <div class="stars fixed top-0 left-0 w-full h-full -z-10 pointer-events-none" id="stars"></div>
+
+  <!-- Hero Section -->
+  <header class="text-center py-[8vh] px-4 max-w-6xl mx-auto" data-aos="fade-down" data-aos-duration="800">
+    <h1 class="font-black text-4xl md:text-5xl lg:text-6xl bg-text-gradient bg-clip-text text-transparent text-shadow-lg shadow-purple-500/30 mb-6">
+      Elara AI
+    </h1>
+    <p class="text-textDark text-lg max-w-2xl mx-auto mb-10">
+      Journey through the cosmos of knowledge with Elara, the intelligent AI chatbot powered by retrieval-augmented generation and advanced document processing.
+    </p>
+    <button onclick="window.location.href='chat.html'" class="bg-purple-500/15 backdrop-blur-md border border-purple-500/50 text-textLight rounded-full px-8 py-3 shadow-lg shadow-purple-500/50 hover:bg-purple-500/30 hover:shadow-purple-500/80 hover:-translate-y-1 transition-all duration-300 font-semibold text-xl">
+      <i class="fas fa-rocket mr-2"></i> Start Your Journey
+    </button>
+  </header>
+
+  <!-- Features That Set Elara Apart -->
+  <section class="max-w-6xl mx-auto px-4 py-12" data-aos="fade-up" data-aos-duration="800">
+    <h2 class="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent text-center mb-12">
+      Features That Set Elara Apart
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-gray-800/10 rounded-2xl p-8 border border-purple-500/20 backdrop-blur-md hover:-translate-y-3 hover:shadow-xl hover:shadow-purple-500/40 hover:border-purple-500/50 transition-all duration-300 text-center" data-aos="zoom-in" data-aos-duration="800">
+        <div class="text-accent text-4xl bg-purple-500/10 w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-5">
+          <i class="fas fa-file-pdf"></i>
+        </div>
+        <h3 class="text-textLight text-xl font-bold mb-3">Document Understanding</h3>
+        <p class="text-textDark">Upload PDFs and get relevant answers derived directly from your documents.</p>
+      </div>
+      
+      <div class="bg-gray-800/10 rounded-2xl p-8 border border-purple-500/20 backdrop-blur-md hover:-translate-y-3 hover:shadow-xl hover:shadow-purple-500/40 hover:border-purple-500/50 transition-all duration-300 text-center" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
+        <div class="text-accent text-4xl bg-purple-500/10 w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-5">
+          <i class="fas fa-comments"></i>
+        </div>
+        <h3 class="text-textLight text-xl font-bold mb-3">Contextual Chat</h3>
+        <p class="text-textDark">Engage with Elara in intuitive conversations with memory of previous queries and answers.</p>
+      </div>
+      
+      <div class="bg-gray-800/10 rounded-2xl p-8 border border-purple-500/20 backdrop-blur-md hover:-translate-y-3 hover:shadow-xl hover:shadow-purple-500/40 hover:border-purple-500/50 transition-all duration-300 text-center" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+        <div class="text-accent text-4xl bg-purple-500/10 w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-5">
+          <i class="fas fa-bolt"></i>
+        </div>
+        <h3 class="text-textLight text-xl font-bold mb-3">Real-Time Responses</h3>
+        <p class="text-textDark">Receive fast and accurate answers leveraging advanced retrieval-augmented generation techniques.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it Works Section -->
+  <section class="max-w-6xl mx-auto px-4 py-12" data-aos="fade-up" data-aos-duration="800">
+    <h2 class="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent text-center mb-6">
+      How Elara Works
+    </h2>
+    <p class="text-textDark text-lg max-w-2xl mx-auto text-center mb-12">
+      Elara combines cutting-edge AI with sophisticated document processing to deliver accurate, context-aware responses.
+    </p>
+    
+    <div class="relative mt-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+        <div class="bg-gray-800/10 rounded-xl p-6 border border-purple-500/20 backdrop-blur-md transition-all duration-300" data-aos="fade-right" data-aos-duration="800">
+          <span class="w-9 h-9 bg-primary-gradient text-white rounded-full text-center leading-9 font-bold mr-3 mb-3 inline-block">1</span>
+          <h4 class="text-textLight text-lg font-semibold mb-2">Document Upload & Processing</h4>
+          <p class="text-textDark text-sm">Upload your PDF documents which are automatically chunked and processed for optimal retrieval.</p>
+        </div>
+        
+        <div class="bg-gray-800/10 rounded-xl p-6 border border-purple-500/20 backdrop-blur-md transition-all duration-300" data-aos="fade-right" data-aos-duration="800" data-aos-delay="100">
+          <span class="w-9 h-9 bg-primary-gradient text-white rounded-full text-center leading-9 font-bold mr-3 mb-3 inline-block">2</span>
+          <h4 class="text-textLight text-lg font-semibold mb-2">Vector Embedding Generation</h4>
+          <p class="text-textDark text-sm">Each document chunk is converted into vector embeddings using AI models and stored in the vector database.</p>
+        </div>
+        
+        <div class="bg-gray-800/10 rounded-xl p-6 border border-purple-500/20 backdrop-blur-md transition-all duration-300" data-aos="fade-right" data-aos-duration="800" data-aos-delay="200">
+          <span class="w-9 h-9 bg-primary-gradient text-white rounded-full text-center leading-9 font-bold mr-3 mb-3 inline-block">3</span>
+          <h4 class="text-textLight text-lg font-semibold mb-2">Query Processing</h4>
+          <p class="text-textDark text-sm">When you ask a question, Elara normalizes your query and converts it to vector embeddings for similarity search.</p>
+        </div>
+        
+        <div class="bg-gray-800/10 rounded-xl p-6 border border-purple-500/20 backdrop-blur-md transition-all duration-300" data-aos="fade-left" data-aos-duration="800" data-aos-delay="300">
+          <span class="w-9 h-9 bg-primary-gradient text-white rounded-full text-center leading-9 font-bold mr-3 mb-3 inline-block">4</span>
+          <h4 class="text-textLight text-lg font-semibold mb-2">Semantic Search</h4>
+          <p class="text-textDark text-sm">Elara performs k-NN search with cosine similarity to find the most relevant document chunks for your query.</p>
+        </div>
+        
+        <div class="bg-gray-800/10 rounded-xl p-6 border border-purple-500/20 backdrop-blur-md transition-all duration-300" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
+          <span class="w-9 h-9 bg-primary-gradient text-white rounded-full text-center leading-9 font-bold mr-3 mb-3 inline-block">5</span>
+          <h4 class="text-textLight text-lg font-semibold mb-2">Context Augmentation</h4>
+          <p class="text-textDark text-sm">Relevant document chunks are formatted into a system prompt with proper citations and context.</p>
+        </div>
+        
+        <div class="bg-gray-800/10 rounded-xl p-6 border border-purple-500/20 backdrop-blur-md transition-all duration-300" data-aos="fade-left" data-aos-duration="800" data-aos-delay="500">
+          <span class="w-9 h-9 bg-primary-gradient text-white rounded-full text-center leading-9 font-bold mr-3 mb-3 inline-block">6</span>
+          <h4 class="text-textLight text-lg font-semibold mb-2">AI Response Generation</h4>
+          <p class="text-textDark text-sm">The AI generates accurate answers based on the augmented context, with sources properly cited.</p>
+        </div>
+      </div>
+      
+      <!-- Connecting lines for desktop -->
+      <div class="process-connector hidden md:block" style="left: 16%; width: 16%;"></div>
+      <div class="process-connector hidden md:block" style="left: 33%; width: 16%;"></div>
+      <div class="process-connector hidden md:block" style="left: 50%; width: 16%;"></div>
+      <div class="process-connector hidden md:block" style="left: 67%; width: 16%;"></div>
+      <div class="process-connector hidden md:block" style="left: 84%; width: 16%;"></div>
+    </div>
+  </section>
+
+  <!-- Technologies & Objectives Section -->
+  <section class="max-w-6xl mx-auto px-4 py-12" data-aos="fade-right" data-aos-duration="800">
+    <h2 class="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent text-center mb-12">
+      Technologies & Objectives
+    </h2>
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+      <li class="bg-purple-500/10 rounded-lg p-4 font-medium text-accent border border-purple-500/20 backdrop-blur-md transition-all duration-300 flex items-center gap-3">
+        <i class="fab fa-python text-secondary text-xl"></i> FastAPI & WebSocket
+      </li>
+      <li class="bg-purple-500/10 rounded-lg p-4 font-medium text-accent border border-purple-500/20 backdrop-blur-md transition-all duration-300 flex items-center gap-3">
+        <i class="fas fa-database text-secondary text-xl"></i> Supabase Database
+      </li>
+      <li class="bg-purple-500/10 rounded-lg p-4 font-medium text-accent border border-purple-500/20 backdrop-blur-md transition-all duration-300 flex items-center gap-3">
+        <i class="fas fa-search text-secondary text-xl"></i> FAISS Search
+      </li>
+      <li class="bg-purple-500/10 rounded-lg p-4 font-medium text-accent border border-purple-500/20 backdrop-blur-md transition-all duration-300 flex items-center gap-3">
+        <i class="fas fa-brain text-secondary text-xl"></i> OpenRouter LLM
+      </li>
+      <li class="bg-purple-500/10 rounded-lg p-4 font-medium text-accent border border-purple-500/20 backdrop-blur-md transition-all duration-300 flex items-center gap-3">
+        <i class="fas fa-file-alt text-secondary text-xl"></i> PDF Processing
+      </li>
+      <li class="bg-purple-500/10 rounded-lg p-4 font-medium text-accent border border-purple-500/20 backdrop-blur-md transition-all duration-300 flex items-center gap-3">
+        <i class="fas fa-vector-square text-secondary text-xl"></i> Vector Embeddings
+      </li>
+      <li class="bg-purple-500/10 rounded-lg p-4 font-medium text-accent border border-purple-500/20 backdrop-blur-md transition-all duration-300 flex items-center gap-3">
+        <i class="fas fa-shield-alt text-secondary text-xl"></i> Secure Sessions
+      </li>
+      <li class="bg-purple-500/10 rounded-lg p-4 font-medium text-accent border border-purple-500/20 backdrop-blur-md transition-all duration-300 flex items-center gap-3">
+        <i class="fas fa-bolt text-secondary text-xl"></i> WebSocket Streaming
+      </li>
+    </ul>
+  </section>
+
+  <!-- Dual Feature Section: Voice Chat & Security -->
+  <section class="max-w-6xl mx-auto px-4 py-12" data-aos="fade-up" data-aos-duration="800">
+    <h2 class="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent text-center mb-12">
+      Advanced Features : Working <span class="text-white">ON</span> 
+    </h2>
+    
+    <div class="flex flex-col lg:flex-row gap-8 mt-8">
+      <div class="bg-gray-800/10 rounded-2xl p-8 border border-purple-500/20 backdrop-blur-md transition-all duration-300 flex-1" data-aos="fade-right" data-aos-duration="800">
+        <div class="text-accent text-3xl mb-5">
+          <i class="fas fa-microphone-alt"></i>
+        </div>
+        <h3 class="text-textLight text-2xl font-bold mb-5">AI Voice Chat & Personalization</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-secondary mt-1"></i> Voice interaction capabilities for natural conversations</li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-secondary mt-1"></i> Personalized responses based on user preferences</li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-secondary mt-1"></i> Multi-turn memory with conversation summarization</li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-secondary mt-1"></i> Adaptive responses to unique user needs and contexts</li>
+        </ul>
+      </div>
+      
+      <div class="bg-gray-800/10 rounded-2xl p-8 border border-purple-500/20 backdrop-blur-md transition-all duration-300 flex-1" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+        <div class="text-accent text-3xl mb-5">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3 class="text-textLight text-2xl font-bold mb-5">Security & Authentication</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-secondary mt-1"></i> API Key authentication for secure access</li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-secondary mt-1"></i> Upload limits and file type restrictions</li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-secondary mt-1"></i> Prompt injection guardrails for safety</li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-secondary mt-1"></i> Privacy controls with do_not_store option</li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-secondary mt-1"></i> Secure session management with deletion options</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="text-center max-w-6xl mx-auto px-4 py-12" data-aos="fade-up" data-aos-duration="800">
+    <button onclick="window.location.href='chat.html'" class="bg-purple-500/15 backdrop-blur-md border border-purple-500/50 text-textLight rounded-full px-8 py-3 shadow-lg shadow-purple-500/50 hover:bg-purple-500/30 hover:shadow-purple-500/80 hover:-translate-y-1 transition-all duration-300 font-semibold text-xl">
+      <i class="fas fa-star mr-2"></i> Start Your Journey with Elara AI
+    </button>
+  </section>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Initialize AOS with faster animations
+    AOS.init({
+      once: true,
+      easing: 'ease-out-cubic',
+      duration: 800,
+      offset: 50,
+      delay: 0,
+    });
+    
+    // Create stars background
+    function createStars() {
+      const starsContainer = document.getElementById('stars');
+      const starsCount = 150;
+      
+      for (let i = 0; i < starsCount; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        
+        const size = Math.random() * 3;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        
+        star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        star.style.animationDelay = `${Math.random() * 2}s`;
+        
+        starsContainer.appendChild(star);
+      }
+    }
+    
+    createStars();
+  </script>
+</body>
+</html>
