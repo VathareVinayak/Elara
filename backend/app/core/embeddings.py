@@ -2,9 +2,9 @@ from sentence_transformers import SentenceTransformer
 
 import os
 from dotenv import load_dotenv
+
 load_dotenv()
 token = os.getenv("HUGGINGFACE_HUB_TOKEN")
-
 
 model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2', use_auth_token=token)
 

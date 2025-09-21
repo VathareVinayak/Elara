@@ -3,7 +3,9 @@ from datetime import datetime
 
 from backend.app.db.supabase_client import supabase
 
-# Sessions
+# 1) Sessions
+
+# Creating Sessions
 async def create_session(user_id: Optional[str] = None) -> str:
     data = {"user_id": user_id, "status": "active"}
     response = supabase.table("sessions").insert(data).execute()
@@ -13,6 +15,7 @@ async def create_session(user_id: Optional[str] = None) -> str:
         raise Exception("No data returned from Supabase")
     return response.data[0]["id"]
 
+# Fetch Session
 async def get_session(session_id: str) -> Optional[dict]:
     response = supabase.table("sessions").select("*").eq("id", session_id).execute()
     if hasattr(response, "error") and response.error:
@@ -21,7 +24,9 @@ async def get_session(session_id: str) -> Optional[dict]:
         return None
     return response.data[0]
 
-# Messages
+# 2) Messages
+
+# Create Message 
 async def create_message(session_id: str, content: str, role: str = "user", message_type: str = "text") -> str:
     data = {
         "session_id": session_id,
@@ -37,6 +42,7 @@ async def create_message(session_id: str, content: str, role: str = "user", mess
         raise Exception("No data returned from Supabase")
     return response.data[0]["id"]
 
+# Fetch Message By session_id
 async def get_messages_by_session(session_id: str) -> List[dict]:
     response = supabase.table("messages").select("*").eq("session_id", session_id).order("created_at").execute()
     if hasattr(response, "error") and response.error:
@@ -46,7 +52,9 @@ async def get_messages_by_session(session_id: str) -> List[dict]:
     return response.data
 
 
-# Documents
+# 3) Documents
+
+# Create Document
 async def create_document(session_id: Optional[str], file_name: str, file_url: str, do_not_store: bool = False) -> str:
     data = {
         "session_id": session_id,
@@ -62,6 +70,7 @@ async def create_document(session_id: Optional[str], file_name: str, file_url: s
         raise Exception("No data returned from Supabase")
     return response.data[0]["id"]
 
+# Fetch Document By session_id
 async def get_documents_by_session(session_id: str) -> List[dict]:
     response = supabase.table("documents").select("*").eq("session_id", session_id).order("created_at").execute()
     if hasattr(response, "error") and response.error:
@@ -69,4 +78,3 @@ async def get_documents_by_session(session_id: str) -> List[dict]:
     if not response.data:
         return []
     return response.data
-

@@ -14,8 +14,6 @@ import uuid
 import shutil
 import os
 
-
-
 router = APIRouter()
 
 UPLOAD_DIR = "uploaded_files"

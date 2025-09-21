@@ -7,7 +7,7 @@ load_dotenv()
 OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
-
+# Testing Non-RAG Based
 async def get_openrouter_response(user_message: str) -> str:
     headers = {
         "Content-Type": "application/json",
@@ -41,5 +41,5 @@ IMPORTANT INSTRUCTIONS:
         response.raise_for_status()
         data = response.json()
 
-    # Extract the AI's reply text
+    # Extracted rag's reply text
     return data["choices"][0]["message"]["content"]

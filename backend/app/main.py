@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 from backend.app.api import ws_chat, documents, rag, chat
 
 app = FastAPI(title="ELARA AI Chatbot")

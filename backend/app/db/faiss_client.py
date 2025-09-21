@@ -25,14 +25,9 @@ class FaissClient:
         return ""
 
     def boost_results(
-        self,
-        chunks: list[str],
-        distances: np.ndarray,
-        boost_recent: bool = True,
-        boost_exact_match: bool = True,
-        query: str = "",
-        chunk_metadata: list = None
-    ) -> list[str]:
+        self,chunks: list[str],distances: np.ndarray,
+        boost_recent: bool = True,boost_exact_match: bool = True,
+        query: str = "",chunk_metadata: list = None) -> list[str]:
         scores = distances.copy()
 
         # Filter valid chunk indices (exclude invalid -1 index)
@@ -56,7 +51,7 @@ class FaissClient:
                     if upload_time and (now - upload_time) < timedelta(days=7):
                         scores[0][i] *= 1.2
 
-        # Sort indices based on boosted scores in descending order
+        # Sort indices based on boosted scores in the descending order
         sorted_indices = np.argsort(-scores[0])
 
         # Filter sorted indices to valid range before accessing chunks
