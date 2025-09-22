@@ -29,7 +29,7 @@ async def metrics():
     # Return latest metrics data in Prometheus format
     return generate_latest()
 
-# Optional helpers for updating metrics can be used in middleware or endpoint logic.
+# Optional helpers for updating metrics.
 def record_request(method: str, endpoint: str, status_code: int, latency: float, error: bool = False):
     REQUEST_COUNT.labels(method=method, endpoint=endpoint, http_status=str(status_code)).inc()
     REQUEST_LATENCY.labels(method=method, endpoint=endpoint).observe(latency)

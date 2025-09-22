@@ -20,6 +20,7 @@ async def websocket_chat(websocket: WebSocket, session_id: Optional[str] = None)
 
     if session_id:
         existing_session = await get_session(session_id)
+        
         if not existing_session:
             logger.warning(f"Session not found: {session_id}")
             await websocket.send_json({"error": "Session not found"})
