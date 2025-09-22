@@ -1,6 +1,6 @@
-from app.core.embeddings import embed_text
-#from app.db.faiss_client import FaissClient
-from ..app.db.faiss_client import FaissClient
+from backend.app.core.embeddings import embed_text
+
+from backend.app.db.faiss_client import FaissClient
 import numpy as np
 
 if __name__ == "__main__":

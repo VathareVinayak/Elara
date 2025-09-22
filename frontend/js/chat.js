@@ -165,9 +165,9 @@
       }).then(resp => resp.json())
         .then(data => {
           appendMessage("system", data.message || "Upload complete.");
-          if (data.chunks_sample) {
-            appendMessage("system", "Preview: " + data.chunks_sample.join(" ; "));
-          }
+          // if (data.chunks_sample) {
+          //   appendMessage("system", "Preview: " + data.chunks_sample.join(" ; "));
+          // }
         }).catch(err => {
           appendMessage("system", `Upload error: ${err}`);
         });
