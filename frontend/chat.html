@@ -75,6 +75,101 @@
       scrollbar-width: thin;
       scrollbar-color: #8b5cf6 rgba(15, 23, 42, 0.5);
     }
+    
+    /* Session list styles */
+    .session-item {
+        padding: 12px 15px;
+        margin: 5px 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-left: 3px solid transparent;
+        font-size: 14px;
+        background: rgba(139, 92, 246, 0.1);
+        border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+
+    .session-item:hover {
+        background: rgba(139, 92, 246, 0.2);
+        border-left-color: #8b5cf6;
+        transform: translateX(2px);
+    }
+
+    .session-item.active-session {
+        background: rgba(139, 92, 246, 0.3);
+        border-left-color: #8b5cf6;
+        font-weight: bold;
+        box-shadow: 0 2px 10px rgba(139, 92, 246, 0.3);
+    }
+
+    .session-date {
+        font-size: 11px;
+        color: #94a3b8;
+        margin-top: 4px;
+        opacity: 0.8;
+    }
+
+    .sidebar-section-label {
+        padding: 15px 20px 8px 20px;
+        font-size: 12px;
+        color: #94a3b8;
+        border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    #sessionsListContainer {
+        max-height: 400px;
+        overflow-y: auto;
+        margin-bottom: 10px;
+        padding: 5px 0;
+    }
+
+    /* Scrollbar for session list */
+    #sessionsListContainer::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    #sessionsListContainer::-webkit-scrollbar-track {
+        background: rgba(15, 23, 42, 0.3);
+    }
+    
+    #sessionsListContainer::-webkit-scrollbar-thumb {
+        background: #8b5cf6;
+        border-radius: 2px;
+    }
+    
+    #sessionsListContainer::-webkit-scrollbar-thumb:hover {
+        background: #7e3af2;
+    }
+
+    /* Mobile sidebar enhancements */
+    @media (max-width: 768px) {
+        .sidebar {
+            width: 280px;
+            z-index: 50;
+        }
+        
+        #sessionsListContainer {
+            max-height: 300px;
+        }
+        
+        .session-item {
+            padding: 10px 12px;
+            margin: 4px 8px;
+            font-size: 13px;
+        }
+    }
+
+    /* Smooth transitions */
+    .sidebar {
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .overlay {
+        transition: opacity 0.3s ease-in-out;
+    }
   </style>
 </head>
 <body class="min-h-screen text-white overflow-hidden">
@@ -96,7 +191,7 @@
   </div>
 
   <!-- Overlay for mobile sidebar -->
-  <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+  <div id="overlay" class="overlay fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
 
   <div class="flex min-h-screen w-screen overflow-hidden">
     <!-- SIDEBAR -->
@@ -107,10 +202,12 @@
           <span class="ps-2 font-bold text-xl">ELARA AI</span>
         </div>
         <div class="sidebar-section-label px-4 py-2 text-xs text-gray-400">Recent Sessions</div>
-
+        <!-- Sessions list will be dynamically inserted here -->
       </div>
       <div class="p-3">
-        <button id="new-chat-btn" class="btn btn-outline-light w-full"><i class="fa fa-plus me-2"></i> New Conversation</button>
+        <button id="new-chat-btn" class="btn btn-outline-light w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg transition duration-200 flex items-center justify-center">
+          <i class="fa fa-plus me-2"></i> New Conversation
+        </button>
       </div>
     </nav>
     
@@ -131,7 +228,7 @@
       
       <!-- Input Bar (fixed at bottom and centered) -->
       <form id="input-bar-container" class="elara-input-bar fixed left-1/2 bottom-5 transform -translate-x-1/2 w-11/12 max-w-3xl rounded-2xl p-3 z-10 flex items-center" onsubmit="return false;">
-        <input id="chat-input" type="text" placeholder="Type your message..." autocomplete="off" required class="flex-1 bg-transparent border-none text-white text-base px-4 py-2 outline-none">
+        <input id="chat-input" type="text" placeholder="Type your message..." autocomplete="off" required class="flex-1 bg-transparent border-none text-white text-base px-4 py-2 outline-none placeholder-gray-400">
         <label for="file-upload" class="file-upload-label cursor-pointer p-2 mx-2 text-purple-300 hover:text-purple-500 transition" title="Upload PDF">
           <i class="fa fa-paperclip"></i>
         </label>

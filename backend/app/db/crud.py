@@ -24,8 +24,17 @@ async def get_session(session_id: str) -> Optional[dict]:
         return None
     return response.data[0]
 
-# 2) Messages
+# Get All Session
+async def get_all_sessions() -> list[dict]:
+    response = supabase.table("sessions").select("*").order("created_at", desc=True).execute()
+    if hasattr(response, "error") and response.error:
+        raise Exception(f"Failed to get sessions: {response.error.message}")
+    if not response.data:
+        return []
+    return response.data
 
+
+# 2) Messages
 # Create Message 
 async def create_message(session_id: str, content: str, role: str = "user", message_type: str = "text") -> str:
     data = {
@@ -53,7 +62,6 @@ async def get_messages_by_session(session_id: str) -> List[dict]:
 
 
 # 3) Documents
-
 # Create Document
 async def create_document(session_id: Optional[str], file_name: str, file_url: str, do_not_store: bool = False) -> str:
     data = {
