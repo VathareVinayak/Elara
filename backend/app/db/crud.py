@@ -86,3 +86,25 @@ async def get_documents_by_session(session_id: str) -> List[dict]:
     if not response.data:
         return []
     return response.data
+
+
+
+# Delete 
+
+# Delete session
+async def delete_session(session_id: str) -> None:
+    response = supabase.table("sessions").delete().eq("id", session_id).execute()
+    if hasattr(response, "error") and response.error:
+        raise Exception(f"Failed to delete session: {response.error.message}")
+
+# Delete message
+async def delete_message(message_id: str) -> None:
+    response = supabase.table("messages").delete().eq("id", message_id).execute()
+    if hasattr(response, "error") and response.error:
+        raise Exception(f"Failed to delete message: {response.error.message}")
+
+# Delete document
+async def delete_document(document_id: str) -> None:
+    response = supabase.table("documents").delete().eq("id", document_id).execute()
+    if hasattr(response, "error") and response.error:
+        raise Exception(f"Failed to delete document: {response.error.message}")
