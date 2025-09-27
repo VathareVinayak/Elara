@@ -128,9 +128,10 @@ async def metrics_middleware(request: Request, call_next):
 app.include_router(ws_chat.router)
 app.include_router(documents.router, prefix="/documents", tags=["Documents"])
 app.include_router(admin.router)
-app.include_router(rag.router, prefix="/rag", tags=["RAG"])
-app.include_router(chat.router, prefix="/chat", tags=["Chat"])
 app.include_router(metrics.router)
+
+# app.include_router(rag.router, prefix="/rag", tags=["RAG"])
+# app.include_router(chat.router, prefix="/chat", tags=["Chat"])
 
 @app.get("/health")
 async def health_check():
