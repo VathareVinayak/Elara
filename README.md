@@ -1,7 +1,8 @@
 # Elara AI 
 
-An AI-powered chatbot backend built with FastAPI, powered by Retrieval-Augmented Generation (RAG) with document processing, Supabase database integration, and Docker containerization.  
-Provides chat APIs, document upload and management, and serves a frontend via FastAPI.
+An AI-powered chatbot backend built with FastAPI, powered by Retrieval-Augmented Generation (RAG) with document processing, Supabase database integration, and Docker containerization.  Provides chat APIs, document upload and management, and serves a frontend via FastAPI.
+
+![Home Page Screenshot](https://raw.githubusercontent.com/VathareVinayak/Elara/main/frontend/assets/home.png)
 
 ---
 
