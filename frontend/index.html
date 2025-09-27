@@ -79,7 +79,7 @@
     <p class="text-textDark text-lg max-w-2xl mx-auto mb-10">
       Journey through the cosmos of knowledge with Elara, the intelligent AI chatbot powered by retrieval-augmented generation and advanced document processing.
     </p>
-    <button onclick="window.location.href='chat.html'" class="bg-purple-500/15 backdrop-blur-md border border-purple-500/50 text-textLight rounded-full px-8 py-3 shadow-lg shadow-purple-500/50 hover:bg-purple-500/30 hover:shadow-purple-500/80 hover:-translate-y-1 transition-all duration-300 font-semibold text-xl">
+    <button onclick="window.location.href='/chat'" class="bg-purple-500/15 backdrop-blur-md border border-purple-500/50 text-textLight rounded-full px-8 py-3 shadow-lg shadow-purple-500/50 hover:bg-purple-500/30 hover:shadow-purple-500/80 hover:-translate-y-1 transition-all duration-300 font-semibold text-xl">
       <i class="fas fa-rocket mr-2"></i> Start Your Journey
     </button>
   </header>
@@ -244,46 +244,12 @@
 
   <!-- Call to Action Section -->
   <section class="text-center max-w-6xl mx-auto px-4 py-12" data-aos="fade-up" data-aos-duration="800">
-    <button onclick="window.location.href='chat.html'" class="bg-purple-500/15 backdrop-blur-md border border-purple-500/50 text-textLight rounded-full px-8 py-3 shadow-lg shadow-purple-500/50 hover:bg-purple-500/30 hover:shadow-purple-500/80 hover:-translate-y-1 transition-all duration-300 font-semibold text-xl">
+    <button onclick="window.location.href='/chat'" class="bg-purple-500/15 backdrop-blur-md border border-purple-500/50 text-textLight rounded-full px-8 py-3 shadow-lg shadow-purple-500/50 hover:bg-purple-500/30 hover:shadow-purple-500/80 hover:-translate-y-1 transition-all duration-300 font-semibold text-xl">
       <i class="fas fa-star mr-2"></i> Start Your Journey with Elara AI
     </button>
   </section>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    // Initialize AOS with faster animations
-    AOS.init({
-      once: true,
-      easing: 'ease-out-cubic',
-      duration: 800,
-      offset: 50,
-      delay: 0,
-    });
-    
-    // Create stars background
-    function createStars() {
-      const starsContainer = document.getElementById('stars');
-      const starsCount = 150;
-      
-      for (let i = 0; i < starsCount; i++) {
-        const star = document.createElement('div');
-        star.classList.add('star');
-        
-        const size = Math.random() * 3;
-        star.style.width = `${size}px`;
-        star.style.height = `${size}px`;
-        
-        star.style.left = `${Math.random() * 100}%`;
-        star.style.top = `${Math.random() * 100}%`;
-        
-        star.style.animationDuration = `${Math.random() * 3 + 2}s`;
-        star.style.animationDelay = `${Math.random() * 2}s`;
-        
-        starsContainer.appendChild(star);
-      }
-    }
-    
-    createStars();
-  </script>
+<script src="/frontend/js/index.js"></script>
 </body>
 </html>

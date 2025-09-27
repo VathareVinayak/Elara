@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 p-6">
+
+  <h1 class="text-3xl font-bold mb-6">Admin Dashboard</h1>
+
+  <div class="container mx-auto">
+    <div class="row">
+      <!-- Sessions List -->
+      <div class="col-md-4 bg-white rounded shadow p-4">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-semibold">Sessions</h2>
+          <button class="btn btn-sm btn-primary" onclick="fetchSessions()">Refresh</button>
+        </div>
+        <ul id="sessions-list" class="list-group overflow-auto" style="max-height: 400px;"></ul>
+      </div>
+
+      <!-- Messages -->
+      <div class="col-md-4 bg-white rounded shadow p-4 mx-4">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-semibold">Messages</h2>
+          <button class="btn btn-sm btn-primary" onclick="refreshMessages()">Refresh</button>
+        </div>
+        <ul id="messages-list" class="list-group overflow-auto" style="max-height: 400px;"></ul>
+      </div>
+
+      <!-- Documents -->
+      <div class="col-md-4 bg-white rounded shadow p-4">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-semibold">Documents</h2>
+          <button class="btn btn-sm btn-primary" onclick="refreshDocuments()">Refresh</button>
+        </div>
+        <ul id="documents-list" class="list-group overflow-auto" style="max-height: 400px;"></ul>
+      </div>
+    </div>
+  </div>
+
+<script src="/frontend/js/admin.js"></script>
+</body>
+</html>
