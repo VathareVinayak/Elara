@@ -70,20 +70,26 @@ function setupEventListeners() {
 // Sidebar management functions
 function toggleSidebar() {
     sidebar.classList.toggle('translate-x-0');
+    sidebar.classList.remove('hidden'); 
     overlay.classList.toggle('hidden');
 }
 
+
 // Hiding Slidebar 
 function hideSidebar() {
-    sidebar.classList.remove('translate-x-0');
-    overlay.classList.add('hidden');
+    sidebar.classList.remove('translate-x-0');  
+    sidebar.classList.add('hidden');            
+    overlay.classList.add('hidden');            
 }
+
 
 // Show Slidebar
 function showSidebar() {
     sidebar.classList.add('translate-x-0');
-    overlay.classList.remove('hidden');
+    sidebar.classList.remove('hidden');   
+    overlay.classList.remove('hidden');  
 }
+
 
 // Connection with Websocket
 function connectWebSocket() {
@@ -336,13 +342,14 @@ function startNewChat() {
 // Handle window resize to manage sidebar behavior
 window.addEventListener('resize', function() {
     if (window.innerWidth > 768) {
-        // On desktop, ensure sidebar is visible
-        sidebar.classList.remove('translate-x-0');
+        sidebar.classList.add('translate-x-0');      // ✅ keep sidebar open on desktop
+        sidebar.classList.remove('hidden');          // ✅ make sure it's visible
         overlay.classList.add('hidden');
     } else {
-        // On mobile, ensure sidebar is hidden by default
-        sidebar.classList.add('translate-x-0');
+        sidebar.classList.add('hidden');             // ✅ hide on mobile by default
+        sidebar.classList.remove('translate-x-0');
     }
+
 });
 
 document.addEventListener('DOMContentLoaded', init);

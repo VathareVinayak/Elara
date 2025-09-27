@@ -3,47 +3,231 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Admin Dashboard</title>
-  <!-- Tailwind CSS CDN -->
+  <title>Elara AI - Admin Dashboard</title>
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
   <!-- Bootstrap CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#7e3af2',
+            primaryDark: '#4c1d95',
+            secondary: '#8b5cf6',
+            accent: '#a78bfa',
+            textLight: '#f0f9ff',
+            textMid: '#d1d5db',
+            textDark: '#bcccdc',
+          },
+          backgroundImage: {
+            'cosmic-gradient': 'radial-gradient(circle at center, #00051a 0%, #001f4d 100%)',
+            'primary-gradient': 'linear-gradient(45deg, #7e3af2, #4c1d95)',
+            'text-gradient': 'linear-gradient(45deg, #7e3af2, #a78bfa, #3b82f6)',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(ellipse at 50% 30%, #232d57 0%, #0f172a 90%);
+      min-height: 100vh;
+    }
+    
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle linear infinite;
+    }
+    
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+    
+    .admin-card {
+      background: rgba(35,45,87,0.95);
+      border: 2px solid rgba(139, 92, 246, 0.25);
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+      backdrop-filter: blur(10px);
+    }
+    
+    .transparent-btn {
+      background: rgba(126, 58, 242, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(126, 58, 242, 0.5);
+      color: #f0f9ff;
+    }
+    
+    .transparent-btn:hover {
+      background: rgba(126, 58, 242, 0.3);
+      border-color: rgba(126, 58, 242, 0.8);
+    }
+    
+    .list-item {
+      background: rgba(139, 92, 246, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      border-left: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+    
+    .list-item:hover {
+      background: rgba(139, 92, 246, 0.2);
+      border-left-color: #8b5cf6;
+      transform: translateX(2px);
+    }
+    
+    .active-session {
+      background: rgba(139, 92, 246, 0.3);
+      border-left-color: #8b5cf6;
+      font-weight: bold;
+      box-shadow: 0 2px 10px rgba(139, 92, 246, 0.3);
+    }
+    
+    .scroll-container {
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+    
+    .scroll-container::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    .scroll-container::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.5);
+      border-radius: 10px;
+    }
+    
+    .scroll-container::-webkit-scrollbar-thumb {
+      background: #8b5cf6;
+      border-radius: 10px;
+    }
+    
+    .scroll-container::-webkit-scrollbar-thumb:hover {
+      background: #7e3af2;
+    }
+    
+    /* For Firefox */
+    .scroll-container {
+      scrollbar-width: thin;
+      scrollbar-color: #8b5cf6 rgba(15, 23, 42, 0.5);
+    }
+  </style>
 </head>
-<body class="bg-gray-100 p-6">
-
-  <h1 class="text-3xl font-bold mb-6">Admin Dashboard</h1>
+<body class="text-textMid min-h-screen p-6">
+  <!-- Stars background -->
+  <div class="stars fixed top-0 left-0 w-full h-full -z-10 pointer-events-none" id="stars"></div>
 
   <div class="container mx-auto">
-    <div class="row">
+    <!-- Header -->
+    <div class="text-center mb-8" data-aos="fade-down" data-aos-duration="800">
+      <h1 class="font-black text-4xl md:text-5xl bg-text-gradient bg-clip-text text-transparent text-shadow-lg shadow-purple-500/30 mb-2">
+        Elara AI Admin Dashboard
+      </h1>
+      <p class="text-textDark text-lg max-w-2xl mx-auto">
+        Manage sessions, messages, and documents with interactions
+      </p>
+    </div>
+
+    <div class="row g-4">
       <!-- Sessions List -->
-      <div class="col-md-4 bg-white rounded shadow p-4">
-        <div class="flex justify-between items-center mb-4">
-          <h2 class="text-xl font-semibold">Sessions</h2>
-          <button class="btn btn-sm btn-primary" onclick="fetchSessions()">Refresh</button>
+      <div class="col-lg-4">
+        <div class="admin-card rounded-2xl p-5 h-full">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-semibold text-textLight">
+              <i class="fas fa-history text-secondary mr-2"></i> Sessions
+            </h2>
+            <button class="btn transparent-btn btn-sm" onclick="fetchSessions()">
+              <i class="fas fa-sync-alt mr-1"></i> Refresh
+            </button>
+          </div>
+          <div class="scroll-container">
+            <ul id="sessions-list" class="space-y-2"></ul>
+          </div>
         </div>
-        <ul id="sessions-list" class="list-group overflow-auto" style="max-height: 400px;"></ul>
       </div>
 
       <!-- Messages -->
-      <div class="col-md-4 bg-white rounded shadow p-4 mx-4">
-        <div class="flex justify-between items-center mb-4">
-          <h2 class="text-xl font-semibold">Messages</h2>
-          <button class="btn btn-sm btn-primary" onclick="refreshMessages()">Refresh</button>
+      <div class="col-lg-4">
+        <div class="admin-card rounded-2xl p-5 h-full">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-semibold text-textLight">
+              <i class="fas fa-comments text-secondary mr-2"></i> Messages
+            </h2>
+            <button class="btn transparent-btn btn-sm" onclick="refreshMessages()">
+              <i class="fas fa-sync-alt mr-1"></i> Refresh
+            </button>
+          </div>
+          <div class="scroll-container">
+            <ul id="messages-list" class="space-y-2"></ul>
+          </div>
         </div>
-        <ul id="messages-list" class="list-group overflow-auto" style="max-height: 400px;"></ul>
       </div>
 
       <!-- Documents -->
-      <div class="col-md-4 bg-white rounded shadow p-4">
-        <div class="flex justify-between items-center mb-4">
-          <h2 class="text-xl font-semibold">Documents</h2>
-          <button class="btn btn-sm btn-primary" onclick="refreshDocuments()">Refresh</button>
+      <div class="col-lg-4">
+        <div class="admin-card rounded-2xl p-5 h-full">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-semibold text-textLight">
+              <i class="fas fa-file-pdf text-secondary mr-2"></i> Documents
+            </h2>
+            <button class="btn transparent-btn btn-sm" onclick="refreshDocuments()">
+              <i class="fas fa-sync-alt mr-1"></i> Refresh
+            </button>
+          </div>
+          <div class="scroll-container">
+            <ul id="documents-list" class="space-y-2"></ul>
+          </div>
         </div>
-        <ul id="documents-list" class="list-group overflow-auto" style="max-height: 400px;"></ul>
       </div>
     </div>
   </div>
 
-<script src="/frontend/js/admin.js"></script>
+  <script>
+    // Starfield background
+    document.addEventListener('DOMContentLoaded', function() {
+      const starsContainer = document.getElementById('stars');
+      const starsCount = 150;
+      
+      for (let i = 0; i < starsCount; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        
+        // Random size (1-3px)
+        const size = Math.random() * 2 + 1;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        
+        // Random position
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        
+        // Random animation duration (3-8s)
+        const duration = Math.random() * 5 + 3;
+        star.style.animationDuration = `${duration}s`;
+        
+        // Random delay
+        star.style.animationDelay = `${Math.random() * 5}s`;
+        
+        starsContainer.appendChild(star);
+      }
+    });
+  </script>
+  
+  <script src="/frontend/js/admin.js"></script>
 </body>
 </html>
