@@ -70,7 +70,7 @@ app.include_router(ws_chat.router)
 app.include_router(documents.router, prefix="/documents", tags=["Documents"])
 app.include_router(admin.router)
 app.include_router(metrics.router)
-app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
+app.include_router(auth.router)
 
 # app.include_router(rag.router, prefix="/rag", tags=["RAG"])
 # app.include_router(chat.router, prefix="/chat", tags=["Chat"])
