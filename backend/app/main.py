@@ -9,7 +9,7 @@ import os
 import time
 from pathlib import Path
 
-from backend.app.api import ws_chat, documents, rag, chat, metrics, admin
+from backend.app.api import ws_chat, documents, rag, chat, metrics, admin ,auth
 
 app = FastAPI(title="ELARA AI Chatbot : Chat With Your Data")
 
@@ -70,6 +70,7 @@ app.include_router(ws_chat.router)
 app.include_router(documents.router, prefix="/documents", tags=["Documents"])
 app.include_router(admin.router)
 app.include_router(metrics.router)
+app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
 
 # app.include_router(rag.router, prefix="/rag", tags=["RAG"])
 # app.include_router(chat.router, prefix="/chat", tags=["Chat"])
