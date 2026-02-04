@@ -54,7 +54,6 @@ Create a `.env` file in your project directory with:
 ```
 SUPABASE_URL=your_supabase_url
 SUPABASE_ANON_KEY=your_supabase_anon_key
-API_KEY=your_internal_api_key
 OPENROUTER_API_KEY=your_openrouter_api_key
 HUGGINGFACE_HUB_TOKEN=your_huggingface_token
 ```
